@@ -1,0 +1,48 @@
+.memory-card-container{
+      background: #000;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      .memory-card{
+         width: 100%;
+         height: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         img{
+            width: 5%;
+            opacity: 0;
+            filter: blur(0.1px);
+            image-rendering: pixelated;
+            animation: 4.2s boxAnimation ease-out;
+         }
+         .memory-text{
+            position: absolute;
+            width: 55%;
+            height: 13.4vw;
+            color: #fff;
+            font-family: "Meiryo";
+            font-weight: 500;
+            text-align: center;
+            transform: scaleY(0);
+            animation: 3.4s textAnimation ease-out;
+            animation-delay: .4s;
+            h2{
+               font-size: 2.7vw;
+               font-weight: 500;
+               line-height: 1;
+               transform: scaleY(.6) scaleX(0.8);
+               letter-spacing: .2vw;
+               filter: blur(2px);
+            }
+            p{
+               font-size: 2.2vw;
+               font-weight: 500;
+               line-height: 1.25;
+               transform: scaleY(.6);
+               letter-spacing: .15vw;
+               filter: blur(2px);
+            }
+         }
+      }
+   }
