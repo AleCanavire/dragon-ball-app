@@ -1,6 +1,27 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
+@font-face {
+   font-family: "Meiryo";
+   src: url("/src/assets/fonts/Meiryo\ UI\ W53\ Bold.ttf");
+   font-weight: 700;
 }
+@font-face {
+   font-family: "Meiryo";
+   src: url("/src/assets/fonts/Meiryo\ UI\ W53\ Regular.ttf");
+   font-weight: 500;
+}
+
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+}
+
+.App{
+   background: #000;
+   overflow: hidden;
+}
+
+@import "./components/HomeScreen/HomeScreen";
+@import "./components/Loading/Loading";
+@import "./components/Loading/MemoryCard";
+@import "./components/Opening/Opening";

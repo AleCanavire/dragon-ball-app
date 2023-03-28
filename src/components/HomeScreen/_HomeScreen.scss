@@ -1,0 +1,114 @@
+.container{
+   background: #000;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   .ps2-and-tv{
+      width: 30%;
+      transition: 5s transform ease;
+      .tv2000s{
+         width: 100%;
+         position: relative;
+         box-shadow: 0 0 100px 25px #000;
+         display: grid;
+         place-items: center;
+         transition: .5s transform ease;
+         transform-origin: 50% 35%;
+         z-index: 2;
+         .tv2000s-image{
+            position: relative;
+            width: 100%;
+            filter: drop-shadow(0px -2px 12px #000);
+            z-index: 3;
+         }
+         .not-signal{
+            position: absolute;
+            top: 12%;
+            width: 80%;
+            transform: perspective(80px) rotateX(-2deg);
+            z-index: 2;
+         }
+         .intro-ps2{
+            position: absolute;
+            top: 8%;
+            width: 80%;
+            height: 84%;
+            transform: perspective(80px) rotateX(-2deg);
+            z-index: 1;
+         }
+         .transition-bg{
+            background: #000;
+            position: absolute;
+            top: 8%;
+            width: 80%;
+            height: 84%;
+            transform: perspective(80px) rotateX(-2deg);
+         }
+      }
+      .playstation-2{
+         width: 45%;
+         margin: 0 auto;
+         position: relative;
+         .playstation-image{
+            width: 100%;
+         }
+         .light{
+            position: absolute;
+            right: 2.5%;
+            bottom: 32.5%;
+            width: 0.6%;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+         }
+         .light-off{
+            background: #ff0000;
+            animation: 3s flashingLightOff infinite;
+         }
+         .light-on{
+            background: #00ff0d;
+            animation: 3s flashingLightOn infinite;
+         }
+         .button-on{
+            position: absolute;
+            right: 1%;
+            bottom: 32%;
+            width: 9.6%;
+            height: 3.5%;
+            cursor: pointer;
+            z-index: 2;
+         }
+      }
+   }
+
+}
+@keyframes flashingLightOff{
+   0%{
+      box-shadow: 0 0 12px 5px #ff0000;
+   }
+   50%{
+      box-shadow: 0 0 20px 5px #ff0000;
+   }
+   100%{
+      box-shadow: 0 0 12px 5px #ff0000;
+   }
+}
+@keyframes flashingLightOn{
+   0%{
+      box-shadow: 0 0 12px 5px #00ff0d;
+   }
+   50%{
+      box-shadow: 0 0 20px 5px #00ff0d;
+   }
+   100%{
+      box-shadow: 0 0 12px 5px #00ff0d;
+   }
+}
