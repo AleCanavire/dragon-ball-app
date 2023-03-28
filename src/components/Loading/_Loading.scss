@@ -1,0 +1,77 @@
+.loading-container{
+   background: #49150f;
+   width: 100%;
+   height: 100vh;
+   .vegeta-training-container{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      margin: 0 0 4% 4%;
+      transform: scaleX(1.5);
+      transform-origin: left bottom;
+      .vegeta-training{
+         background: url("/images/vegeta-loading.png");
+         width: 11vw;
+         height: 15.2vw;
+         background-size: 22vw;
+         background-position: 0;
+      }
+      .counter-container{
+         position: absolute;
+         left: 105%;
+         bottom: 25%;
+         width: 85%;
+         .box-counter{
+            width: 100%;
+            animation: 1.2s scaleBox infinite;
+         }
+         .counter{
+            position: absolute;
+            bottom: 36%;
+            left: 42%;
+            height: 28%;
+            transform: scaleX(.8);
+            &.two-numbers{
+               left: 30%;
+            }
+            .number{
+               height: 100%;
+               image-rendering: pixelated;
+               filter: blur(1px);
+            }
+         }
+      }
+   }
+}
+.hideLoading{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: #000;
+   z-index: 10;
+   animation: 15s hideLoading;
+}
+@keyframes hideLoading{
+   0%{
+      opacity: 1;
+   }
+   5%{
+      opacity: 0;
+   }
+   95%{
+      opacity: 0;
+   }
+   100%{
+      opacity: 1;
+   }
+}
+@keyframes scaleBox{
+   50%{
+      transform: scale(1.1);
+   }
+   100%{
+      transform: scale(1);
+   }
+}
