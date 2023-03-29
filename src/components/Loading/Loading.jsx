@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import { screenContext } from '../../context/screenContext';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MemoryCard from './MemoryCard';
 
 function Loading() {
-  const {changeScreen} = useContext(screenContext)
+  const navigate = useNavigate();
 
   const [down, setDown] = useState(false);
   const [counter, setCounter] = useState(0);
@@ -26,20 +26,23 @@ function Loading() {
     setTimeout(() => {
       setLoading(true);
       setTimeout(setShowLoading, 15000, false);
-      setTimeout(changeScreen, 17000, "Opening");
+      setTimeout(navigate, 17000, "/opening");
     }, 6000);
 
-    const interval = setInterval(() => {
-      setDown(prevState => !prevState)
-    }, 2500);
-    
     document.addEventListener("keydown", quantityPress);
-
     return () => {
-      clearInterval(interval);
       document.removeEventListener("keydown", quantityPress);
     }
   }, []);
+
+  useEffect(()=>{
+    if (loading) {
+      const interval = setInterval(() => {
+        setDown(prevState => !prevState);
+      }, 2500);
+      return () => clearInterval(interval);
+    }
+  }, [loading])
 
   useEffect(() => {
     if (!down && !isFirstRender.current) {
