@@ -8,11 +8,16 @@
       overflow: hidden;
    }
    .screenShadow{
+      background: #000;
       position: absolute;
       width: 100%;
       height: 100%;
       transition: 1s box-shadow ease;
+      box-shadow: inset 0 0 100px 30px #000;
       z-index: 4;
+      &.showOpening{
+         background: transparent;
+      }
    }
 }
 @keyframes textAnimation{
