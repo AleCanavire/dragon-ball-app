@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
-import { screenContext } from '../../context/screenContext';
+import { useNavigate } from 'react-router-dom';
 
 function HomeScreen() {
-  const { changeScreen } = useContext(screenContext)
+  const navigate = useNavigate();
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [on, setOn] = useState(false);
@@ -25,13 +25,13 @@ function HomeScreen() {
     playedSeconds === 3 && setIsVisible(false);
     if (playedSeconds === 17) {
       setZoomTv(true);
-      setTimeout(changeScreen, 1500, "Loading");
+      setTimeout(navigate, 1500, "/loading");
     }
   }
 
   return (
     <div className="container">
-      <div className="ps2-and-tv" style={zoom ? {transform: "scale(2)"} : {}} onMouseEnter={()=>setZoom(true)}>
+      <div className="ps2-and-tv" style={zoom ? {transform: "scale(1.8)"} : {}} onMouseEnter={()=>setZoom(true)}>
         <div className="tv2000s" style={zoomTv ? {transform: "scale(3)"} : {}}>
           <img src="/images/tv2000s-screen.png" alt="Tele modelo de los 2000s" className='tv2000s-image' />
           {isVisible && <img src="/images/not-signal.webp" alt="Imagen no hay señal" className='not-signal' /> }
@@ -42,7 +42,7 @@ function HomeScreen() {
             height="84%"
             playing={isPlaying}
             onProgress={changesProgress}
-            />
+          />
           <div className="transition-bg" style={zoomTv ? {zIndex: 2} : {}}/>
         </div>
         <div className="playstation-2">
