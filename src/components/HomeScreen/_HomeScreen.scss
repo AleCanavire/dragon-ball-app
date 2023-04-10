@@ -1,114 +1,183 @@
-.container{
-   background: #000;
+.cursor{
+   width: 4vh;
+   height: 4vh;
+   border-radius: 50%;
+   border: .2vh solid rgb(255 255 255 / 50%);
    position: absolute;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
+   transform: translate(-50%, -50%);
+   transition: .2s transform ease-out;
+   pointer-events: none;
    display: flex;
-   flex-direction: column;
    justify-content: center;
    align-items: center;
-   overflow: hidden;
-   .ps2-and-tv{
-      width: 30%;
-      transition: 5s transform ease;
-      .tv2000s{
-         width: 100%;
-         position: relative;
-         box-shadow: 0 0 100px 25px #000;
-         display: grid;
-         place-items: center;
-         transition: .5s transform ease;
-         transform-origin: 50% 35%;
-         z-index: 2;
-         .tv2000s-image{
+   z-index: 10;
+   &::before, &::after{
+      content: "";
+      position: absolute;
+   }
+   &::before{
+      width: 2.5vh;
+      height: 2.5vh;
+      border-radius: 50%;
+      border: .2vh solid transparent;
+      border-left-color: #fff;
+      border-right-color: #fff;
+   }
+   &::after{
+      background: #fff;
+      width: .3vh;
+      height: .3vh;
+      border-radius: 50%;
+   }
+   &.hover{
+      transform: translate(-50%, -50%) scale(1.3);
+      &::before{
+         animation: cursorHover2 1s infinite;
+      }
+   }
+}
+@keyframes cursorHover2{
+   to{
+      transform: rotate(360deg);
+   }
+}
+
+.container{
+   position: relative;
+   .dark-room-container{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-origin: 20% 20%;
+      transition: .2s transform ease;
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+      .living-room{
+         width: auto;
+         height: 100%;
+         object-fit: contain;
+         transition: .2s filter ease-out;
+         z-index: 1;
+      }
+      .tv-screen{
+         position: absolute;
+         top: 15.5%;
+         width: 37vh;
+         height: 23.5%;
+         transform: perspective(11vh) rotateY(1.8deg) translateX(-86%);
+         transform-origin: top left;
+         z-index: 0;
+         .not-signal{
             position: relative;
             width: 100%;
-            filter: drop-shadow(0px -2px 12px #000);
-            z-index: 3;
-         }
-         .not-signal{
-            position: absolute;
-            top: 12%;
-            width: 80%;
-            transform: perspective(80px) rotateX(-2deg);
+            height: 100%;
             z-index: 2;
          }
          .intro-ps2{
             position: absolute;
-            top: 8%;
-            width: 80%;
-            height: 84%;
-            transform: perspective(80px) rotateX(-2deg);
+            top: 0;
             z-index: 1;
          }
          .transition-bg{
             background: #000;
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 8%;
-            width: 80%;
-            height: 84%;
-            transform: perspective(80px) rotateX(-2deg);
+            top: 0;
          }
       }
-      .playstation-2{
-         width: 45%;
-         margin: 0 auto;
-         position: relative;
-         .playstation-image{
-            width: 100%;
-         }
+      .playstation{
+         position: absolute;
+         top: 47.2%;
+         left: 50%;
+         width: 20vh;
+         height: 4%;
+         border-radius: 50%;
+         transform: translateX(-220%) rotate(-4deg) skewX(45deg);
+         z-index: 3;
          .light{
             position: absolute;
-            right: 2.5%;
-            bottom: 32.5%;
-            width: 0.6%;
+            top: 55%;
+            right: 3%;
+            height: 0.2vh;
             aspect-ratio: 1/1;
-            border-radius: 50%;
-         }
-         .light-off{
-            background: #ff0000;
-            animation: 3s flashingLightOff infinite;
-         }
-         .light-on{
-            background: #00ff0d;
-            animation: 3s flashingLightOn infinite;
-         }
-         .button-on{
-            position: absolute;
-            right: 1%;
-            bottom: 32%;
-            width: 9.6%;
-            height: 3.5%;
-            cursor: pointer;
-            z-index: 2;
+            transform: rotate(4deg) skewX(-45deg);
+            &.light-off{
+               background: #ff0000;
+               box-shadow: 0 0 10px 3px #ff0000;
+            }
+            &.light-on{
+               background: #00ff0d;
+               box-shadow: 0 0 10px 3px #00ff0d;
+            }
          }
       }
-   }
-
-}
-@keyframes flashingLightOff{
-   0%{
-      box-shadow: 0 0 12px 5px #ff0000;
-   }
-   50%{
-      box-shadow: 0 0 20px 5px #ff0000;
-   }
-   100%{
-      box-shadow: 0 0 12px 5px #ff0000;
-   }
-}
-@keyframes flashingLightOn{
-   0%{
-      box-shadow: 0 0 12px 5px #00ff0d;
-   }
-   50%{
-      box-shadow: 0 0 20px 5px #00ff0d;
-   }
-   100%{
-      box-shadow: 0 0 12px 5px #00ff0d;
+      .digital-clock-container{
+         position: absolute;
+         top: 30.5%;
+         left: 50%;
+         width: 13vh;
+         height: 2%;
+         display: flex;
+         justify-content: flex-start;
+         align-items: center;
+         transform: translateX(-24%) skewX(-5deg) rotate(-3deg);
+         z-index: 1;
+         &:hover > .neon-clock{
+            visibility: visible;
+            opacity: 1;
+         }
+         .digital-clock{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 5%;
+            .numbers{
+               color: #c0ff00;
+               font-family: "DS-DIGITAL";
+               font-size: 1.3vh;
+               font-weight: 700;
+               line-height: 1;
+               letter-spacing: 0.15vh;
+               text-shadow: 0 0 10px #c0ff00, 0 0 10px #c0ff00;
+            }
+         }
+         .neon-clock{
+            width: 100%;
+            height: 5vh;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -150%);
+            display: flex;
+            justify-content: center;
+            transition: .3s ease-out;
+            visibility: hidden;
+            opacity: 0;
+            &::before{
+               content: "";
+               position: absolute;
+               bottom: 0;
+               width: 65%;
+               height: 2vh;
+               transform: translateY(110%) perspective(50vh) rotateX(70deg) rotate(-5deg) skewX(20deg);
+               background: #c0ff00;
+               filter: blur(2.5vh);
+               opacity: .9;
+            }
+            span{
+               color: #c0ff00;
+               font-family: "DS-DIGITAL";
+               font-size: 5vh;
+               font-weight: 700;
+               line-height: 1;
+               letter-spacing: 0.15vh;
+               text-shadow: 0 0 10px #c0ff00, 0 0 5px #c0ff00;
+            }
+         }
+      }
    }
 }
