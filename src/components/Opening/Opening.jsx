@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
+import { useNavigate } from 'react-router-dom';
 
 function Opening() {
   const [reduceShadow, setReduceShadow] = useState(false);
@@ -8,8 +9,18 @@ function Opening() {
   function changesProgress(e) {
     const playedSeconds = Math.trunc(e.playedSeconds);
     playedSeconds === 1 && setIsLoading(false);
-    playedSeconds === 5 &&  setReduceShadow(true);
+    playedSeconds === 5 && setReduceShadow(true);
   }
+
+  const navigate = useNavigate()
+  function skipOpening() {
+    navigate("/intro")
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", skipOpening)
+    return () => document.removeEventListener("keydown", skipOpening)
+  }, [])
   
   return (
     <div className="opening-container">
@@ -20,6 +31,7 @@ function Opening() {
         height="100%"
         playing={true}
         onProgress={changesProgress}
+        onEnded={() => navigate("/intro")}
       />
       <div
       className={`screenShadow ${isLoading ? "" : "showOpening" }`}
