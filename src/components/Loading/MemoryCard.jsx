@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 function MemoryCard() {
   useEffect(()=>{
     const boxSound = new Audio("./media/box-sound.mp3");
-    setTimeout(boxSound.play(), 2000);
+    boxSound.play();
   }, [])
 
   return (

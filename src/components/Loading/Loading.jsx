@@ -10,7 +10,7 @@ function Loading() {
   const quantity = useRef(0);
   const isFirstRender = useRef(true);
   const [loading, setLoading] = useState(false);
-  const [showLoading, setShowLoading] = useState(true)
+  const [loadingHidden, setLoadingHidden] = useState(true)
 
   function quantityPress(e) {
     if (e.key === "x") {
@@ -23,10 +23,12 @@ function Loading() {
   }
 
   useEffect(() => {
+
     setTimeout(() => {
       setLoading(true);
-      setTimeout(setShowLoading, 15000, false);
-      setTimeout(navigate, 17000, "/opening");
+      setTimeout(setLoadingHidden, 1000, false);
+      setTimeout(setLoadingHidden, 15000, true);
+      setTimeout(navigate, 16000, "/opening");
     }, 6000);
 
     document.addEventListener("keydown", quantityPress);
@@ -73,7 +75,7 @@ function Loading() {
             </div>
           </div>
         </div>
-        <div style={showLoading ? {opacity: "0"} : {opacity: "1"} }  className="hideLoading"/>
+        <div style={loadingHidden ? {opacity: "1"} : {opacity: "0"}}  className="hideLoading"/>
         </>
       : <MemoryCard/>
       }
