@@ -238,10 +238,87 @@
                left: 50%;
                transform: translate(-50%, 285%) scaleX(1.1);
                opacity: .9;
-               animation: pressStart 1s ease infinite 6s;
+               animation: pressStart .9s ease infinite 6s;
+            }
+         }
+         .select-game-container{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            .new-game{
+               position: absolute;
+               top: 50%;
+               right: 100%;
+               height: 7.1%;
+               transform: translate(0, 194%) scaleX(1.25);
+               transform-origin: right;
+               display: flex;
+               justify-content: center;
+               transition: .3s ease-out;
+               &.active{
+                  right: 50%;
+                  transform: translate(50%, 194%) scaleX(1.25);
+                  transform-origin: center;
+               }
+               .bar{
+                  height: 100%;
+                  width: 87vh;
+                  background: url("/images/Bar.png");
+                  background-size: 87vh 14.2vh;
+               }
+               .text{
+                  position: absolute;
+                  height: 100%;
+                  width: 44.5vh;
+                  background: url(/images/New-Game.png);
+                  background-size: 44.5vh 14.2vh;
+                  animation: selectGame 0.4s infinite alternate;
+               }
+               div{
+                  filter: blur(.15vh);
+               }
+            }
+            .continue-game{
+               position: absolute;
+               top: 50%;
+               left: 100%;
+               height: 7.1%;
+               transform: translate(0, 340%) scaleX(1.25);
+               transform-origin: left;
+               display: flex;
+               justify-content: center;
+               transition: .3s ease-out;
+               &.active{
+                  left: 50%;
+                  transform: translate(-50%, 340%) scaleX(1.25);
+                  transform-origin: center;
+               }
+               div{
+                  filter: blur(.15vh);
+               }
+               .bar{
+                  height: 100%;
+                  width: 87vh;
+                  background: url("/images/Bar.png");
+                  background-size: 87vh 14.2vh;
+               }
+               .text{
+                  position: absolute;
+                  height: 100%;
+                  width: 37vh;
+                  background: url(/images/Continue.png);
+                  background-size: 37vh 14.2vh;
+                  animation: selectGame 0.4s infinite alternate;
+               }
             }
          }
       }
+   }
+}
+@keyframes selectGame {
+   to{
+      transform: scaleY(.9);
    }
 }
 @keyframes pressStart {

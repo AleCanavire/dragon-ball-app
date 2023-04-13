@@ -1,6 +1,36 @@
-import React from 'react'
+import { useState, useEffect, useRef } from 'react';
 
 function IntroGame() {
+  const [start, setStart] = useState(false);
+  const [active, setActive] = useState({option1: true, option2: false});
+  const endIntro = useRef(false);
+
+  const select = new Audio("./media/select-sound.mp3");
+  useEffect(() => {
+    setTimeout(() => {
+      endIntro.current = true;
+    }, 6000);
+    function pressKey(e) {
+      if (e.key === "Enter" && start === false && endIntro.current === true) {
+        select.play();
+        setStart(true);
+      } else if (e.key === "ArrowUp" || e.key === "w") {
+        setActive({option1: true, option2: false});
+      } else if (e.key === "ArrowDown" || e.key === "s") {
+        setActive({option1: false, option2: true});
+      }  
+    }
+
+    document.addEventListener("keydown", pressKey);
+    return () => document.removeEventListener("keydown", pressKey);
+  }, [start])
+
+  useEffect(()=>{
+    if (start === true) {
+      select.play();
+    }
+  }, [active])
+  
   return (
     <div className="intro-game">
       <div className="background">
@@ -20,9 +50,21 @@ function IntroGame() {
         </div>
       </div>
       <div className="menu">
-        <div className="press-start-container">
-          <img src="/images/press-start-box.png" className="press-start-box"/>  
-          <img src="/images/press-start.png" className="press-start"/>  
+        { start === false && 
+          <div className="press-start-container">
+            <img src="/images/press-start-box.png" className="press-start-box"/>  
+            <img src="/images/press-start.png" className="press-start"/>  
+          </div>
+        }
+        <div className="select-game-container">
+          <div className={`new-game ${start ? "active" : ""}`}>
+            <div className="bar" style={active.option1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="text" style={active.option1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+          </div>
+          <div className={`continue-game ${start ? "active" : ""}`}>
+            <div className="bar" style={active.option2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="text" style={active.option2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+          </div>
         </div>
       </div>
     </div>
