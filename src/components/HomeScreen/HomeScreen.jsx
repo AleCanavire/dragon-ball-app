@@ -1,8 +1,7 @@
-import React, { useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 import Clock from './Clock';
-import { useEffect } from 'react';
 
 function HomeScreen() {
   const navigate = useNavigate();
@@ -33,25 +32,12 @@ function HomeScreen() {
       setTimeout(navigate, 200, "/loading");
     }
   }
-  const [mouse, setMouse] = useState({x:null, y:null})
-  useEffect(()=>{
-    document.addEventListener("mousemove", (e) => {
-      setMouse({x:e.pageX, y:e.pageY})
-    })
-  }, [])
-  const cursorRef = useRef();
-  function addHover() {
-    cursorRef.current.classList.add("hover")
-  }
-  function removeHover() {
-    cursorRef.current.classList.remove("hover");
-  }
-
-  // Movement Room
-  const [cords, setCords] = useState({ x: 0, y: 0 });
+  
+  // Movement Room and Cursor
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
   useEffect(() => {
     function handleMouseMove(e) {
-      setCords({ x: e.clientX, y: e.clientY });
+      setMouse({x:e.pageX, y:e.pageY})
     }
     
     document.addEventListener("mousemove", handleMouseMove);
@@ -60,10 +46,18 @@ function HomeScreen() {
     };
   }, []);
 
+  const cursorRef = useRef();
+  function addHover() {
+    cursorRef.current.classList.add("hover")
+  }
+  function removeHover() {
+    cursorRef.current.classList.remove("hover");
+  }
+
   return (
     <div className="container">
       <div className="cursor" ref={cursorRef} style={{top: mouse.y, left: mouse.x}}/>
-      <div style={{transform: `scale(1.05)translate(${cords.x / -100}px, ${cords.y / -150}px)`}} className="movement-container">
+      <div style={{transform: `scale(1.05)translate(${mouse.x / -100}px, ${mouse.y / -150}px)`}} className="movement-container">
         <div className="dark-room-container" style={zoomTv ? {transform: "scale(2.8)"} : {}}>
           <img src="/images/dark-room.png" style={{filter: light}}
           className="living-room" alt="Living a oscuras, donde se logran ver un sillon, una playstation 2, una tv y una silla." />
@@ -81,6 +75,10 @@ function HomeScreen() {
           </div>
           <div className="playstation" onClick={lightsOn} onMouseEnter={addHover} onMouseLeave={removeHover}>
             <div className={`light ${on ? "light-on" : "light-off"}`} />
+            <div className="playstation-tooltip">
+              {`TURN ON
+                PLAYSTATION`}
+            </div>
           </div>
           <Clock onAddHover={addHover} onRemoveHover={removeHover}/>
         </div>
