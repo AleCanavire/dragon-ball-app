@@ -1,24 +1,47 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function IntroGame() {
+function IntroGame({ onPause }) {
+  const navigate = useNavigate();
+  const [showIntro, setShowIntro] = useState(false)
   const [start, setStart] = useState(false);
-  const [active, setActive] = useState({option1: true, option2: false});
+  const [active, setActive] = useState(1);
   const endIntro = useRef(false);
 
+  const number = Math.floor(Math.random() * 6) + 1;
+  const voice = new Audio(`./media/voice-${number}.mp3`);
+  const dialog = new Audio(`./media/dialog-${number}.mp3`);
+
   const select = new Audio("./media/select-sound.mp3");
-  useEffect(() => {
+  const selected = new Audio("./media/selected-sound.mp3");
+
+  useEffect(()=>{
+    setTimeout(setShowIntro, 0, true);
     setTimeout(() => {
       endIntro.current = true;
+      voice.play();
     }, 6000);
+  },[])
+  function handlePause() {
+    onPause();
+  }
+
+  useEffect(() => {
     function pressKey(e) {
       if (e.key === "Enter" && start === false && endIntro.current === true) {
-        select.play();
+        selected.play();
+        dialog.play();
         setStart(true);
+      } else if (e.key === "Enter" && start === true && endIntro.current === true) {
+        selected.play();
+        handlePause();
+        setShowIntro(false);
+        setTimeout(navigate, 300, "/versusmenu");
       } else if (e.key === "ArrowUp" || e.key === "w") {
-        setActive({option1: true, option2: false});
+        setActive(1);
       } else if (e.key === "ArrowDown" || e.key === "s") {
-        setActive({option1: false, option2: true});
-      }  
+        setActive(2);
+      }
     }
 
     document.addEventListener("keydown", pressKey);
@@ -58,15 +81,16 @@ function IntroGame() {
         }
         <div className="select-game-container">
           <div className={`new-game ${start ? "active" : ""}`}>
-            <div className="bar" style={active.option1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
-            <div className="text" style={active.option1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="bar" style={active === 1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="text" style={active === 1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
           </div>
           <div className={`continue-game ${start ? "active" : ""}`}>
-            <div className="bar" style={active.option2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
-            <div className="text" style={active.option2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="bar" style={active === 2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="text" style={active === 2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
           </div>
         </div>
       </div>
+      <div style={showIntro ? {opacity: "0"} : {opacity: "1"}} className="hide-intro" />
     </div>
   )
 }
