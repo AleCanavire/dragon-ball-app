@@ -1,0 +1,312 @@
+.versus-menu-container{
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   .background{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .bg{
+         width: 100%;
+         height: 100%;
+      }
+      .clouds{
+         position: absolute;
+         width: 200%;
+         height: 60%;
+         top: 0;
+         right: 0;
+         filter: blur(0.3vh);
+         opacity: .85;
+         animation: cloudsMove 30s linear infinite;
+         @keyframes cloudsMove {
+            to{
+               transform: translateX(50%);
+            }
+         }
+      }
+      .clouds-bg-left{
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 21vh;
+         transform: scaleX(1.55);
+         transform-origin: top left;
+         animation: cloudLeft 4s infinite alternate;
+         @keyframes cloudLeft {
+            to{
+               transform: scaleX(1.55) translate(-8%, -8%);
+            }
+         }
+      }
+      .clouds-bg-right{
+         position: absolute;
+         top: 0;
+         right: 0;
+         height: 21vh;
+         transform: scaleX(1.55) translate(8%, -8%);
+         transform-origin: top right;
+         animation: cloudRight 4s infinite alternate;
+         @keyframes cloudRight {
+            to{
+               transform: scaleX(1.55);
+            }
+         }
+      }
+   }
+   .vegeta-and-nappa{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      transform: scaleX(1.55);
+      transform-origin: right bottom;
+      overflow: hidden;
+      .nappa, .vegeta{
+         position: absolute;
+         right: 0;
+         bottom: 0;
+         filter: blur(0.1vh);
+      }
+      .nappa{
+         width: 27.48vw;
+         height: 47vw;
+         background: url("/images/nappa-versus.png");
+         background-size: auto 47vw;
+         transform: translate(3%, 3%);
+      }
+      .vegeta{
+         width: 23.36vw;
+         height: 44vw;
+         background: url("/images/vegeta-versus.png");
+         background-size: auto 44vw;
+         transform: translate(18%, 8%);
+      }
+   }
+   .menu{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      .menu-header{
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         filter: blur(0.1vh);
+         .versus-title{
+            position: absolute;
+            transform: scaleX(1.5);
+            transform-origin: top left;
+            height: 7vh;
+            top: 3vw;
+            left: 12vw;
+            animation: versusTitle 1s infinite alternate linear;
+            @keyframes versusTitle {
+               to{
+                  transform: scaleX(1.5) translate(1%, -10%);
+               }
+            }
+         }
+         .versus-logo{
+            position: absolute;
+            transform: scaleX(1.5);
+            transform-origin: top left;
+            height: 14.5vh;
+            top: 2vw;
+            left: 2vw;
+            animation: versusLogo 0.6s infinite alternate linear;
+            @keyframes versusLogo {
+               to{
+                  transform: scaleX(1.5) translateY(-8%);
+               }
+            }
+         }
+      }
+      .menu-options{
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         display: flex;
+         align-items: center;
+         filter: blur(0.1vh);
+         .option{
+            position: absolute;
+            left: 0;
+            width: 42vw;
+            height: 7vh;
+            background: url("/images/select-versus.png");
+            background-size: 42vw 14vh;
+            background-repeat: no-repeat;
+            transform-origin: left;
+            .option-text{
+               position: absolute;
+               left: 14%;
+               width: 25vw;
+               transform: scaleX(1.15) translateY(-10%);
+               transform-origin: left;
+            }
+            .scouter-digits{
+               display: none;
+               position: absolute;
+               right: 5.4%;
+               bottom: 0;
+               width: 8.4vw;
+               height: 2.5vw;
+               background: url(/images/scouter-digits.png);
+               background-size: 8.4vw 10vw;
+               background-repeat: no-repeat;
+               transform: translateY(-18%);
+               animation: digitsAnimate .3s infinite steps(3);
+               z-index: -1;
+               @keyframes digitsAnimate {
+                  to{
+                     background-position-y: 100%;
+                  }
+               }
+            }
+            .scouter{
+               display: none;
+               position: absolute;
+               left: 5.5%;
+               top: 50%;
+               height: 3.7vw;
+               width: 4.2vw;
+               image-rendering: pixelated;
+               filter: drop-shadow(0 0 .1vw #fff) drop-shadow(0 0 .1vw #fff) drop-shadow(0 0 .1vw #fff);
+               transform: translateY(-50%);
+               animation: scouterAnimate .5s infinite linear alternate;
+               z-index: -1;
+               @keyframes scouterAnimate {
+                  to{
+                     transform: translateY(-38%);
+                  }
+               }
+            }
+         }
+         .option-1{
+            transform: scaleX(1.51) translate(0, -318%);
+            &.selected{
+               background-position-y: -7vh;
+               transform: scaleX(1.51) translate(-1%, -328%);
+               .player-vs-com{
+                  height: 3.5vw;
+                  background: url("/images/1p-vs-com.png") no-repeat 0 -3.5vw / 25vw 7vw;
+                  animation: optionSelected .4s linear infinite alternate;
+               }
+               .scouter-digits, .scouter{
+                  display: block;
+               }
+            }
+            .player-vs-com{
+               height: 3.5vw;
+               background: url("/images/1p-vs-com.png") no-repeat 0 0 / 25vw 7vw;
+            }
+         }
+         .option-2{
+            transform: scaleX(1.51) translate(0, -156%);
+            &.selected{
+               background-position-y: -7vh;
+               transform: scaleX(1.51) translate(-1%, -166%);
+               .player-vs-player{
+                  height: 3.5vw;
+                  background: url("/images/1p-vs-2p.png") no-repeat 0 -3.5vw / 25vw 7vw;
+                  animation: optionSelected .4s linear infinite alternate;
+               }
+               .scouter-digits, .scouter{
+                  display: block;
+               }
+            }
+            .player-vs-player{
+               height: 3.5vw;
+               background: url("/images/1p-vs-2p.png") no-repeat 0 0 / 25vw 7vw;
+            }
+         }
+         .option-3{
+            transform: scaleX(1.51) translate(0, 6%);
+            &.selected{
+               background-position-y: -7vh;
+               transform: scaleX(1.51) translate(-1%, -4%);
+               .com-vs-com{
+                  height: 3.5vw;
+                  background: url("/images/com-vs-com.png") no-repeat 0 -3.5vw / 25vw 7vw;
+                  animation: optionSelected .4s linear infinite alternate;
+               }
+               .scouter-digits, .scouter{
+                  display: block;
+               }
+            }
+            .com-vs-com{
+               height: 3.5vw;
+               background: url("/images/com-vs-com.png") no-repeat 0 0 / 25vw 7vw;
+            }
+         }
+         .option-4{
+            transform: scaleX(1.51) translate(0, 164%);
+            &.selected{
+               background-position-y: -7vh;
+               transform: scaleX(1.51) translate(-1%, 154%);
+               .battle-settings{
+                  height: 4vw;
+                  background: url("/images/battle-settings.png") no-repeat 0 -4vw / 25vw 8vw;
+                  animation: optionSelected .4s linear infinite alternate;
+               }
+               .scouter-digits, .scouter{
+                  display: block;
+               }
+            }
+            .battle-settings{
+               height: 4vw;
+               background: url("/images/battle-settings.png") no-repeat 0 0 / 25vw 8vw;
+            }
+         }
+      }
+      .subtitle-container{
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         bottom: 0;
+         .subtitle-box{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 27%;
+            .versus-box{
+               width: 100%;
+               height: 100%;
+               display: flex;
+               align-items: center;
+            }
+            .subtitle{
+               color: #fff;
+               position: absolute;
+               top: 50%;
+               left: 5%;
+               font-size: 4vw;
+               font-weight: 600;
+               line-height: 1;
+               letter-spacing: 0.15vw;
+               text-shadow: -0.3vh -0.3vh 0 #000, 0.3vh -0.3vh 0 #000, -0.3vh 0.3vh 0 #000, 0.3vh 0.3vh 0 #000;
+               -webkit-text-stroke: 0.1vw #000;
+               transform: scaleY(0.5) scaleX(0.85) translateY(-140%);
+               transform-origin: left;
+               filter: blur(0.15vw);
+            }
+         }
+      }
+   }
+}
+
+@keyframes blink {
+   50%{
+      background-position-x: 100%;
+   }
+}
+
+@keyframes optionSelected {
+   to{
+      transform: scale(1.15, 1.2) translateY(-10%);
+   }
+}
