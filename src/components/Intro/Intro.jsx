@@ -4,29 +4,25 @@ import IntroGame from './IntroGame';
 function Intro() {
   const [showIntroGame, setShowIntroGame] = useState(false);
   const [introHidden, setIntroHidden] = useState(true);
-  const [endIntro, setEndIntro] = useState(false);
+  const [soundtrack] = useState(new Audio("./media/soundtrack.mp3"));
+
+  const onPause = () => {
+    soundtrack.pause();
+  };
 
   useEffect(()=>{
-    const number = Math.floor(Math.random() * 6) + 1;
-    const voice = new Audio(`./media/voice-${number}.mp3`);
-    const dialog = new Audio(`./media/dialog-${number}.mp3`);
-    const soundtrack = new Audio("./media/soundtrack.mp3");
-
     setTimeout(setIntroHidden, 0, false);
     setTimeout(() => {
       soundtrack.play();
     }, 1000);
     setTimeout(setIntroHidden, 5000, true);
     setTimeout(setShowIntroGame, 6000, true);
-    setTimeout(() => {
-      voice.play();
-    }, 12000);
   }, [])
 
   return (
     <div className="intro-container">
       { showIntroGame
-      ? <IntroGame/>
+      ? <IntroGame onPause={onPause}/>
       : <div className="rights-reserved">
           <p className="rights-text">© 2007 Atari, Inc. All rights reserved.</p>
           <div className="rights-text">
