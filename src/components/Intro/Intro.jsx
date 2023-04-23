@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import IntroGame from './IntroGame';
 
 function Intro() {
   const [showIntroGame, setShowIntroGame] = useState(false);
   const [introHidden, setIntroHidden] = useState(true);
-  const [soundtrack] = useState(new Audio("./media/soundtrack.mp3"));
+  const soundtrack = useRef(new Audio("./media/soundtrack.mp3"));
 
   const onPause = () => {
-    soundtrack.pause();
+    soundtrack.current.pause();
   };
 
   useEffect(()=>{
     setTimeout(setIntroHidden, 0, false);
     setTimeout(() => {
-      soundtrack.play();
+      soundtrack.current.play();
     }, 1000);
     setTimeout(setIntroHidden, 5000, true);
     setTimeout(setShowIntroGame, 6000, true);
