@@ -15,7 +15,7 @@ function Loading() {
   function quantityPress(e) {
     if (e.key === "x") {
       quantity.current += 1
-      if (quantity.current >= 4) {
+      if (quantity.current >= 5) {
         setDown(prevState => !prevState);
         quantity.current = 0;
       }
@@ -23,7 +23,6 @@ function Loading() {
   }
 
   useEffect(() => {
-
     setTimeout(() => {
       setLoading(true);
       setTimeout(setLoadingHidden, 1000, false);
@@ -32,9 +31,7 @@ function Loading() {
     }, 6000);
 
     document.addEventListener("keydown", quantityPress);
-    return () => {
-      document.removeEventListener("keydown", quantityPress);
-    }
+    return () => document.removeEventListener("keydown", quantityPress);
   }, []);
 
   useEffect(()=>{
