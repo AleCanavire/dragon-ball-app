@@ -1,18 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function VersusMenu() {
+  const navigate = useNavigate();
   const [active, setActive] = useState(1);
-  const [soundtrack] = useState(new Audio("./media/versus-soundtrack.mp3"));
-  const [playerCom] = useState(new Audio("./media/1P-vs-COM.mp3"));
-  const [playerPlayer] = useState(new Audio("./media/1P-vs-2P.mp3"));
-  const [comCom] = useState(new Audio("./media/COM-vs-COM.mp3"));
-  const [settings] = useState(new Audio("./media/Battle-Settings.mp3"));
-
+  const [showVersus, setShowVersus] = useState(false);
+  // Dialogos
+  const soundtrack = useRef(new Audio("./media/versus-soundtrack.mp3"));
+  const playerCom = useRef(new Audio("./media/1P-vs-COM.mp3"));
+  const playerPlayer = useRef(new Audio("./media/1P-vs-2P.mp3"));
+  const comCom = useRef(new Audio("./media/COM-vs-COM.mp3"));
+  const settings = useRef(new Audio("./media/Battle-Settings.mp3"));
+  // Efectos de sonido
   const select = new Audio("./media/select-sound.mp3");
   const selected = new Audio("./media/selected-sound.mp3");
   
   useEffect(() => {
     function playVoice(opt, prevOpt, newOpt) {
+      select.play();
       setActive(opt);
       prevOpt.pause();
       prevOpt.currentTime = 0;
@@ -20,28 +25,28 @@ function VersusMenu() {
     }
     function pressKey(e) {
       if (e.key === "ArrowUp" || e.key === "w") {
-        active === 4 && playVoice(3, settings, comCom);
-        active === 3 && playVoice(2, comCom, playerPlayer);
-        active === 2 && playVoice(1, playerPlayer, playerCom);
+        active === 4 && playVoice(3, settings.current, comCom.current);
+        active === 3 && playVoice(2, comCom.current, playerPlayer.current);
+        active === 2 && playVoice(1, playerPlayer.current, playerCom.current);
       } else if (e.key === "ArrowDown" || e.key === "s") {
-        active === 1 && playVoice(2, playerCom, playerPlayer);
-        active === 2 && playVoice(3, playerPlayer, comCom);
-        active === 3 && playVoice(4, comCom, settings);
+        active === 1 && playVoice(2, playerCom.current, playerPlayer.current);
+        active === 2 && playVoice(3, playerPlayer.current, comCom.current);
+        active === 3 && playVoice(4, comCom.current, settings.current);
       } else if (e.key === "Enter") {
         selected.play();
+        setShowVersus(false);
+        setTimeout(navigate, 300, "/characters");
+        soundtrack.current.pause();
       }
     }
     document.addEventListener("keydown", pressKey);
     return () => document.removeEventListener("keydown", pressKey);
   }, [active])
 
-  useEffect(()=>{
-    select.play();
-  }, [active])
-
   const [blink, setBlink] = useState(false)
   useEffect(()=>{
-    soundtrack.play();
+    soundtrack.current.play();
+    setShowVersus(true);
     const interval = setInterval(() => {
       setBlink(true);
       setTimeout(setBlink, 600, false);
@@ -58,8 +63,8 @@ function VersusMenu() {
         <img src="/images/clouds-bg-right.png" className="clouds-bg-right" />
       </div>
       <div className="vegeta-and-nappa">
-        <div style={blink ? {animation: "blink .3s steps(2, end) .3s"} : {}} className="nappa"/>
-        <div style={blink ? {animation: "blink .3s steps(2, end)"} : {}} className="vegeta"/>
+        <div className={`nappa ${blink ? "blink": ""}`}/>
+        <div className={`vegeta ${blink ? "blink": ""}`}/>
       </div>
       <div className="menu">
         <div className="menu-header">
@@ -95,6 +100,7 @@ function VersusMenu() {
           </div>
         </div>
       </div>
+      <div style={showVersus ? {opacity: "0"} : {opacity: "1"}} className="hide-versus-menu"/>
     </div>
   )
 }

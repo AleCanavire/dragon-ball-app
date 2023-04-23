@@ -1,4 +1,5 @@
 .versus-menu-container{
+   position: relative;
    width: 100%;
    height: 100vh;
    overflow: hidden;
@@ -17,7 +18,7 @@
          height: 60%;
          top: 0;
          right: 0;
-         filter: blur(0.3vh);
+         filter: blur(0.15vw);
          opacity: .85;
          animation: cloudsMove 30s linear infinite;
          @keyframes cloudsMove {
@@ -30,7 +31,7 @@
          position: absolute;
          top: 0;
          left: 0;
-         height: 21vh;
+         width: 21.5vw;
          transform: scaleX(1.55);
          transform-origin: top left;
          animation: cloudLeft 4s infinite alternate;
@@ -44,7 +45,7 @@
          position: absolute;
          top: 0;
          right: 0;
-         height: 21vh;
+         width: 21.5vw;
          transform: scaleX(1.55) translate(8%, -8%);
          transform-origin: top right;
          animation: cloudRight 4s infinite alternate;
@@ -75,6 +76,9 @@
          background: url("/images/nappa-versus.png");
          background-size: auto 47vw;
          transform: translate(3%, 3%);
+         &.blink{
+            animation: blink .3s steps(2, end) .3s;
+         }
       }
       .vegeta{
          width: 23.36vw;
@@ -82,6 +86,9 @@
          background: url("/images/vegeta-versus.png");
          background-size: auto 44vw;
          transform: translate(18%, 8%);
+         &.blink{
+            animation: blink .3s steps(2, end);
+         }
       }
    }
    .menu{
@@ -99,7 +106,7 @@
             position: absolute;
             transform: scaleX(1.5);
             transform-origin: top left;
-            height: 7vh;
+            width: 34.4vw;
             top: 3vw;
             left: 12vw;
             animation: versusTitle 1s infinite alternate linear;
@@ -113,7 +120,7 @@
             position: absolute;
             transform: scaleX(1.5);
             transform-origin: top left;
-            height: 14.5vh;
+            width: 7.6vw;
             top: 2vw;
             left: 2vw;
             animation: versusLogo 0.6s infinite alternate linear;
@@ -136,9 +143,9 @@
             position: absolute;
             left: 0;
             width: 42vw;
-            height: 7vh;
+            height: 4vw;
             background: url("/images/select-versus.png");
-            background-size: 42vw 14vh;
+            background-size: 42vw 8vw;
             background-repeat: no-repeat;
             transform-origin: left;
             .option-text{
@@ -189,7 +196,7 @@
          .option-1{
             transform: scaleX(1.51) translate(0, -318%);
             &.selected{
-               background-position-y: -7vh;
+               background-position-y: -4vw;
                transform: scaleX(1.51) translate(-1%, -328%);
                .player-vs-com{
                   height: 3.5vw;
@@ -208,7 +215,7 @@
          .option-2{
             transform: scaleX(1.51) translate(0, -156%);
             &.selected{
-               background-position-y: -7vh;
+               background-position-y: -4vw;
                transform: scaleX(1.51) translate(-1%, -166%);
                .player-vs-player{
                   height: 3.5vw;
@@ -227,7 +234,7 @@
          .option-3{
             transform: scaleX(1.51) translate(0, 6%);
             &.selected{
-               background-position-y: -7vh;
+               background-position-y: -4vw;
                transform: scaleX(1.51) translate(-1%, -4%);
                .com-vs-com{
                   height: 3.5vw;
@@ -246,7 +253,7 @@
          .option-4{
             transform: scaleX(1.51) translate(0, 164%);
             &.selected{
-               background-position-y: -7vh;
+               background-position-y: -4vw;
                transform: scaleX(1.51) translate(-1%, 154%);
                .battle-settings{
                   height: 4vw;
@@ -288,7 +295,7 @@
                font-weight: 600;
                line-height: 1;
                letter-spacing: 0.15vw;
-               text-shadow: -0.3vh -0.3vh 0 #000, 0.3vh -0.3vh 0 #000, -0.3vh 0.3vh 0 #000, 0.3vh 0.3vh 0 #000;
+               text-shadow: -0.15vw -0.15vw 0 #000, 0.15vw -0.15vw 0 #000, -0.15vw 0.15vw 0 #000, 0.15vw 0.15vw 0 #000;
                -webkit-text-stroke: 0.1vw #000;
                transform: scaleY(0.5) scaleX(0.85) translateY(-140%);
                transform-origin: left;
@@ -296,6 +303,15 @@
             }
          }
       }
+   }
+   .hide-versus-menu{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 1;
+      transition: opacity 0.3s ease-out;
    }
 }
 
