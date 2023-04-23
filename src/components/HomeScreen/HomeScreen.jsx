@@ -41,9 +41,7 @@ function HomeScreen() {
     }
     
     document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => document.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const cursorRef = useRef();

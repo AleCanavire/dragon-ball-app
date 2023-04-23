@@ -13,11 +13,10 @@ function Opening() {
   }
 
   const navigate = useNavigate()
-  function skipOpening() {
-    navigate("/intro")
-  }
-
   useEffect(() => {
+    function skipOpening() {
+      navigate("/intro")
+    }
     document.addEventListener("keydown", skipOpening)
     return () => document.removeEventListener("keydown", skipOpening)
   }, [])
