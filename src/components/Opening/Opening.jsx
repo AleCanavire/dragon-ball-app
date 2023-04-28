@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { useNavigate } from 'react-router-dom';
+import Notification from '../Notification/Notification';
+import InfoIcon from "../../assets/images/info-icon.svg";
 
 function Opening() {
   const [reduceShadow, setReduceShadow] = useState(false);
@@ -32,11 +34,13 @@ function Opening() {
         onProgress={changesProgress}
         onEnded={() => navigate("/intro")}
       />
-      <div
-      className={`screenShadow ${isLoading ? "" : "showOpening" }`}
-      style={ reduceShadow
-      ? {boxShadow: "inset 0 0 100px 30px #000"}
-      : {boxShadow: "inset 0 0 150px 150px #000"}}/>
+      <div className={`screenShadow ${isLoading ? "" : "showOpening" }`}
+      style={ reduceShadow ? {boxShadow: "inset 0 0 100px 30px #000"} : {boxShadow: "inset 0 0 150px 150px #000"}}
+      />
+      <Notification>
+        <img className="info-icon" src={InfoIcon} />
+        <p>Press any button to skip the intro.</p>
+      </Notification>
     </div>
   )
 }
