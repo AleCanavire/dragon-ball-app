@@ -1,0 +1,37 @@
+.notification{
+   background-color: #2c2d2c;
+   position: absolute;
+   top: 10%;
+   right: 0;
+   max-width: 20vw;
+   padding: 1.5vw 1vw;
+   border-radius: .5vw;
+   display: flex;
+   align-items: center;
+   box-sizing: border-box;
+   transform: translateX(150%);
+   box-shadow: .08vw .08vw .08vw 0 rgba(255 255 255 / 20%) inset,
+               -.08vw -.08vw .08vw 0 rgba(0 0 0 / 40%) inset;
+   animation: notification 6s ease-in-out 1.5s;
+   cursor: none;
+   z-index: 10;
+   .info-icon{
+      height: 1.5vw;
+      margin-right: 1vw;
+      filter: drop-shadow(.25vw .25vw .25vw #000)
+   }
+   p{
+      color: #d2d4d5;
+      font-size: 1vw;
+      text-shadow: .25vw .25vw .25vw #000;
+      img{
+         height: 1.2vw;
+         vertical-align: middle;
+      }
+   }
+   @keyframes notification {
+      20%, 80%{
+         transform: translateX(-15%);
+      }
+   }
+}
