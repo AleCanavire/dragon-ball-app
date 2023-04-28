@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MemoryCard from './MemoryCard';
+import Notification from '../Notification/Notification';
+import InfoIcon from "../../assets/images/info-icon.svg";
+import crossButton from "../../assets/images/cross-button.svg";
 
 function Loading() {
   const navigate = useNavigate();
@@ -8,21 +11,19 @@ function Loading() {
   const [down, setDown] = useState(false);
   const [counter, setCounter] = useState(0);
   const quantity = useRef(0);
-  const isFirstRender = useRef(true);
   const [loading, setLoading] = useState(false);
-  const [loadingHidden, setLoadingHidden] = useState(true)
-
-  function quantityPress(e) {
-    if (e.key === "x") {
-      quantity.current += 1
-      if (quantity.current >= 5) {
-        setDown(prevState => !prevState);
-        quantity.current = 0;
-      }
-    }
-  }
+  const [loadingHidden, setLoadingHidden] = useState(true);
 
   useEffect(() => {
+    function quantityPress(e) {
+      if (e.key === "x") {
+        quantity.current += 1
+        if (quantity.current === 5) {
+          setDown(prevState => !prevState);
+          quantity.current = 0;
+        }
+      }
+    }
     setTimeout(() => {
       setLoading(true);
       setTimeout(setLoadingHidden, 1000, false);
@@ -44,10 +45,8 @@ function Loading() {
   }, [loading])
 
   useEffect(() => {
-    if (!down && !isFirstRender.current) {
+    if (!down) {
       setCounter(prevCounter => prevCounter + 1);
-    } else {
-      isFirstRender.current = false;
     }
   }, [down]);
 
@@ -71,6 +70,10 @@ function Loading() {
               </div>
             </div>
           </div>
+          <Notification>
+            <img className="info-icon" src={InfoIcon} />
+            <p>Press <img align="middle" src={crossButton} /> to help Vegeta.</p>
+          </Notification>
         </div>
         <div style={loadingHidden ? {opacity: "1"} : {opacity: "0"}}  className="hideLoading"/>
         </>
