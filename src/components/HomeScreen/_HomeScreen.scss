@@ -32,13 +32,21 @@
    &.hover{
       transform: translate(-50%, -50%) scale(1.3);
       &::before{
-         animation: cursorHover2 1s infinite;
+         animation: cursorHover 1s infinite;
       }
    }
+   &.click{
+      animation: cursorClick .6s ease;
+   }
 }
-@keyframes cursorHover2{
+@keyframes cursorHover{
    to{
       transform: rotate(360deg);
+   }
+}
+@keyframes cursorClick{
+   50%{
+      transform: translate(-50%, -50%) scale(2)
    }
 }
 

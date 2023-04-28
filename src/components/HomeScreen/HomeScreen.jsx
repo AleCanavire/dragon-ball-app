@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ReactPlayer from 'react-player';
-import Clock from './Clock';
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ReactPlayer from "react-player";
+import Clock from "./Clock";
+import Notification from "../Notification/Notification";
+import InfoIcon from "../../assets/images/info-icon.svg";
 
 function HomeScreen() {
   const navigate = useNavigate();
@@ -34,17 +36,27 @@ function HomeScreen() {
   }
   
   // Movement Room and Cursor
+  const cursorRef = useRef();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     function handleMouseMove(e) {
       setMouse({x:e.pageX, y:e.pageY})
     }
-    
+    function handleMouseClick(e) {
+      cursorRef.current.classList.add("click");
+      setTimeout(() => {
+        cursorRef.current.classList.remove("click");
+      }, 600);
+    }
     document.addEventListener("mousemove", handleMouseMove);
-    return () => document.removeEventListener("mousemove", handleMouseMove);
+    document.addEventListener("click", handleMouseClick);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("click", handleMouseClick);
+    }
   }, []);
 
-  const cursorRef = useRef();
   function addHover() {
     cursorRef.current.classList.add("hover")
   }
@@ -81,6 +93,10 @@ function HomeScreen() {
           <Clock onAddHover={addHover} onRemoveHover={removeHover}/>
         </div>
       </div>
+      <Notification>
+        <img className="info-icon" src={InfoIcon} />
+        <p>Use full screen for a better experience.</p>
+      </Notification>
     </div>
   )
 }
