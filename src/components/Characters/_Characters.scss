@@ -12,16 +12,72 @@
       img{
          width: 100%;
          height: 100%;
+         filter: blur(0.1vw);
       }
    }
-   .character-selected-1p{
+   .character-selected{
       position: absolute;
-      left: 0;
       width: 50%;
       height: 100%;
       img{
          width: 100%;
          height: 100%;
+      }
+      .bar-name{
+         position: absolute;
+         bottom: 12vw;
+         width: 49vw;
+         height: 8vw;
+         .name, .subtitle{
+            position: absolute;
+            font-size: 3.4vw;
+            font-weight: 600;
+            line-height: 1;
+            text-shadow: -0.15vw -0.15vw 0 #000, 0.15vw -0.15vw 0 #000, -0.15vw 0.15vw 0 #000, 0.15vw 0.15vw 0 #000;
+            -webkit-text-stroke: 0.1vw #000;
+            transform: scaleY(.6);
+            filter: blur(0.08vw);
+         }
+         .name{
+            color: #fff;
+            top: 12%;
+         }
+         .subtitle{
+            color: #f9f700;
+            bottom: 10%;
+         }
+      }
+   }
+   .character-selected-1p{
+      left: 0;
+      transform: translateX(-100%);
+      animation: transitionCharacters .5s linear forwards .4s;
+      .bar-name-1p{
+         left: 0;
+         .name{
+            right: 4%;
+            transform-origin: top right;
+         }
+         .subtitle{
+            right: 7%;
+            transform-origin: bottom right;
+         }
+      }
+   }
+   .character-selected-2p{
+      right: 0;
+      transform: translateX(100%);
+      animation: transitionCharacters .5s linear forwards .4s;
+      .bar-name-2p{
+         right: 0;
+         .name{
+            left: 4%;
+            transform-origin: top left;
+         }
+         .subtitle{
+            left: 7%;
+            transform-origin: bottom left;
+         }
       }
    }
    .divider{
@@ -36,7 +92,10 @@
       top: 3vw;
       width: 100%;
       height: 8vw;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      transform: translateX(-100%);
+      animation: transitionCharacters .5s linear forwards;
       .hud-bg{
          width: 100%;
          height: 100%;
@@ -56,24 +115,76 @@
          height: 100%;
          left: 0;
       }
-      .characters{
-         width: 79.5%;
-         position: absolute;
-         top: 13%;
-         left: 16.3%;
-         display: flex;
-         flex-wrap: wrap;
-         gap: 0 2.7vw;
-         transition: .2s transform ease-out;
-         .character{
-            width: 9.04vw;
-            height: 5.8vw;
-            display: flex;
-            align-items: center;
-            img{
-               width: 100%;
-               height: 5.2vw;
+      .transformations-container{
+         animation: transformations .3s linear forwards .3s;
+         @keyframes transformations {
+            to{
+               width: 82.5vw;
             }
+         }
+      }
+      .characters-slider, .transformations-container{
+         position: absolute;
+         top: 7%;
+         left: 15%;
+         width: 0;
+         height: 6.7vw;
+         box-sizing: content-box;
+         transition: width .3s linear;
+         overflow: hidden;
+         .characters, .transformations{
+            width: 82.5vw;
+            padding: 0 0.78vw;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 1.725vw;
+            transition: 0.2s transform ease-out;
+            .character{
+               width: 9.04vw;
+               height: 5.8vw;
+               padding: 0.5vw;
+               display: flex;
+               align-items: center;
+               box-sizing: content-box;
+               img{
+                  width: 100%;
+                  height: 5.2vw;
+                  &.active{
+                     position: relative;
+                     animation: selected .4s infinite alternate linear;
+                     border: 0.45vw solid #ffff5c;
+                     border-radius: 5%;
+                  }
+                  @keyframes selected {
+                     from{
+                        transform: scale(1.15, 1.2);
+                     }
+                     to{
+                        transform: scale(1.25, 1.3);
+                     }
+                  }
+               }
+            }
+         }     
+      }
+      .arrow-up{
+         position: absolute;
+         top: 0;
+         width: 4.6vw;
+         transform: translateY(-40%);
+         animation: arrowUp .4s infinite alternate;
+         img{
+            filter: drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .07vw #000) drop-shadow(0 0 .07vw #000) drop-shadow(0 0 .07vw #000) drop-shadow(0 0 .07vw #000)  blur(.05vw);
+         }
+      }
+      .arrow-down{
+         position: absolute;
+         bottom: 0;
+         width: 4.6vw;
+         transform: translateY(60%);
+         animation: arrowDown .4s infinite alternate;
+         img{
+            filter: drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .05vw #fff) drop-shadow(0 0 .07vw #000) drop-shadow(0 0 .07vw #000) drop-shadow(0 0 .07vw #000) drop-shadow(0 0 .07vw #000)  blur(.05vw);
          }
       }
    }
@@ -82,6 +193,8 @@
       width: 100%;
       height: 8vw;
       bottom: 3vw;
+      transform: translateX(100%);
+      animation: transitionCharacters .5s linear forwards;
       .hud-bg{
          width: 100%;
          height: 100%;
@@ -101,6 +214,79 @@
          height: 100%;
          left: 0;
       }
+      .characters-slider{
+         position: absolute;
+         top: 7%;
+         right: 14.6%;
+         height: 6.7vw;
+         box-sizing: content-box;
+         transition: width .3s linear;
+         overflow: hidden;
+         .characters{
+            width: 82.5vw;
+            padding: 0 0.78vw;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 1.725vw;
+            transition: 0.2s transform ease-out;
+            .character{
+               width: 9.04vw;
+               height: 5.8vw;
+               padding: 0.5vw;
+               display: flex;
+               align-items: center;
+               box-sizing: content-box;
+               img{
+                  width: 100%;
+                  height: 5.2vw;
+                  &.active{
+                     position: relative;
+                     animation: selected .4s infinite alternate linear;
+                     border: 0.45vw solid #ffff5c;
+                     border-radius: 5%;
+                  }
+                  @keyframes selected {
+                     from{
+                        transform: scale(1.15, 1.2);
+                     }
+                     to{
+                        transform: scale(1.25, 1.3);
+                     }
+                  }
+               }
+            }
+         }     
+      }
+   }
+   .hide-characters{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      animation: hideCharacters 1s ease forwards;
+      z-index: 10;
+      @keyframes hideCharacters {
+         to{
+            opacity: 0;
+         }
+      }
+   }
+}
+@keyframes transitionCharacters {
+   to{
+      transform: translateX(0%);
+   }
+}
+@keyframes arrowUp {
+   to{
+      transform: translateY(-80%);
+   }
+}
+@keyframes arrowDown {
+   to{
+      transform: translateY(100%);
    }
 }
 @keyframes raysEffect {
@@ -115,5 +301,13 @@
    }
    75%{
       background-position-y: -100%;
+   }
+}
+@keyframes show {
+   from{
+      opacity: 0;
+   }
+   to{
+      opacity: 1;
    }
 }
