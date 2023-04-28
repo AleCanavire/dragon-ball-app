@@ -32,7 +32,7 @@ function VersusMenu() {
         active === 1 && playVoice(2, playerCom.current, playerPlayer.current);
         active === 2 && playVoice(3, playerPlayer.current, comCom.current);
         active === 3 && playVoice(4, comCom.current, settings.current);
-      } else if (e.key === "Enter") {
+      } else if (e.key === "Enter" && active !== 4) {
         selected.play();
         setShowVersus(false);
         setTimeout(navigate, 300, "/characters");
