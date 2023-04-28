@@ -5,7 +5,7 @@
    padding: 0;
    box-sizing: border-box;
    text-decoration: none;
-   font-family: "Meiryo";
+   font-family: "Meiryo", sans-serif;
 }
 
 .App{
@@ -19,4 +19,5 @@
 @import "./components/Opening/Opening";
 @import "./components/Intro/Intro";
 @import "./components/VersusMenu/VersusMenu";
-@import "./components/Characters/Characters"
+@import "./components/Characters/Characters";
+@import "./components/Notification/Notification"
