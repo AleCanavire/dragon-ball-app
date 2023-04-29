@@ -108,7 +108,7 @@ function Characters() {
       <div className="character-selected character-selected-1p">
         <img
           style={animation ? {animation: "show .4s ease-out"} : {}}
-          src={selected.image} alt={selected.name} className="selected"
+          src={selected.image} alt={selected.name} loading="lazy" className="selected"
         />
         <div className="bar-name bar-name-1p">
           <img src="/images/bar-name-1p.png" />
