@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import characters, { defaultArray } from '../../data/characters';
 import ArrowUp from "../../assets/images/arrow-up.svg";
 import ArrowDown from "../../assets/images/arrow-down.svg";
+import CharacterSelected from './CharacterSelected';
 
 function Characters() {
   const [sectionActive, setSectionActive] = useState(0);
   const charactersRef = useRef();
   const [selected, setSelected] = useState(characters[0]);
-  const [animation, setAnimation] = useState(true);
   const [transformations, setTransformations] = useState(null);
   const [transformation, setTransformation] = useState(0);
   const [showTransformations, setShowTransformations] = useState(false);
@@ -26,9 +26,7 @@ function Characters() {
   useEffect(()=>{
     const translate = 100 / 14;
     charactersRef.current.style.transform = `translateY(-${translate * sectionActive}%)`;
-
-    setAnimation(true);
-    setTimeout(setAnimation, 400, false);
+    
     function findCharacter(operation, number) {
       if (operation === "next") {
         const newSelect = characters.find(character => Number(character.id) === Number(selected.id) + number);
@@ -105,17 +103,7 @@ function Characters() {
       <div className="background">
         <img src="/images/select-background.webp" />
       </div>
-      <div className="character-selected character-selected-1p">
-        <img
-          style={animation ? {animation: "show .4s ease-out"} : {}}
-          src={selected.image} alt={selected.name} loading="lazy" className="selected"
-        />
-        <div className="bar-name bar-name-1p">
-          <img src="/images/bar-name-1p.png" />
-          <p className="name">{selected.name}</p>
-          {selected.subtitle && <p className="subtitle">{selected.subtitle}</p>}
-        </div>
-      </div>
+      <CharacterSelected selected={selected}/>
       <div className="character-selected character-selected-2p">
         <img src={characters[1].image} alt={characters[1].name} className="selected"/>
         <div className="bar-name bar-name-2p">
