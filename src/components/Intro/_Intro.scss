@@ -273,7 +273,6 @@
                   width: 44.5vh;
                   background: url(/images/New-Game.png);
                   background-size: 44.5vh 14.2vh;
-                  animation: selectGame 0.4s infinite alternate;
                }
                div{
                   filter: blur(.15vh);
@@ -309,7 +308,6 @@
                   width: 37vh;
                   background: url(/images/Continue.png);
                   background-size: 37vh 14.2vh;
-                  animation: selectGame 0.4s infinite alternate;
                }
             }
          }

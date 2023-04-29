@@ -82,11 +82,11 @@ function IntroGame({ onPause }) {
         <div className="select-game-container">
           <div className={`new-game ${start ? "active" : ""}`}>
             <div className="bar" style={active === 1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
-            <div className="text" style={active === 1 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="text" style={active === 1 ? {backgroundPositionY: "0", animation: "selectGame 0.4s infinite alternate"} : {backgroundPositionY: "7.1vh"}} />
           </div>
           <div className={`continue-game ${start ? "active" : ""}`}>
             <div className="bar" style={active === 2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
-            <div className="text" style={active === 2 ? {backgroundPositionY: "0"} : {backgroundPositionY: "7.1vh"}} />
+            <div className="text" style={active === 2 ? {backgroundPositionY: "0", animation: "selectGame 0.4s infinite alternate"} : {backgroundPositionY: "7.1vh"}} />
           </div>
         </div>
       </div>
