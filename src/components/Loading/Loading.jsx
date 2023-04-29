@@ -13,6 +13,7 @@ function Loading() {
   const quantity = useRef(0);
   const [loading, setLoading] = useState(false);
   const [loadingHidden, setLoadingHidden] = useState(true);
+  const isFirstRendering = useRef(true);
 
   useEffect(() => {
     function quantityPress(e) {
@@ -45,8 +46,10 @@ function Loading() {
   }, [loading])
 
   useEffect(() => {
-    if (!down) {
+    if (!down && !isFirstRendering.current) {
       setCounter(prevCounter => prevCounter + 1);
+    } else{
+      isFirstRendering.current = false;
     }
   }, [down]);
 
