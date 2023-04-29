@@ -9,7 +9,7 @@ function MemoryCard() {
   return (
     <div className="memory-card-container">
       <div className="memory-card">
-        <img src="./images/recuadro-bt3.png"/>
+        <img src="./images/recuadro-bt3.webp"/>
         <div className="memory-text">
           <h2>MEMORY CARD slot 1</h2>
           <p>

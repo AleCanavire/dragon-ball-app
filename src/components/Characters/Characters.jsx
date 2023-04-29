@@ -103,7 +103,7 @@ function Characters() {
   return (
     <div className="characters-container">
       <div className="background">
-        <img src="/images/select-background.jpg" />
+        <img src="/images/select-background.webp" />
       </div>
       <div className="character-selected character-selected-1p">
         <img

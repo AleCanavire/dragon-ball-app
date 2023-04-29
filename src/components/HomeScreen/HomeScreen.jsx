@@ -69,7 +69,7 @@ function HomeScreen() {
       <div className="cursor" ref={cursorRef} style={{top: mouse.y, left: mouse.x}}/>
       <div style={{transform: `scale(1.05)translate(${mouse.x / -100}px, ${mouse.y / -150}px)`}} className="movement-container">
         <div className="dark-room-container" style={zoomTv ? {transform: "scale(2.8)"} : {}}>
-          <img src="/images/dark-room.png" style={{filter: light}}
+          <img src="/images/dark-room.webp" style={{filter: light}}
           className="living-room" alt="Living a oscuras, donde se logran ver un sillon, una playstation 2, una tv y una silla." />
           <div className="tv-screen">
             {isVisible && <img src="/images/not-signal.webp" alt="Imagen no hay señal" className="not-signal" /> }

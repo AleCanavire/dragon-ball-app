@@ -57,10 +57,10 @@ function VersusMenu() {
   return (
     <div className="versus-menu-container">
       <div className="background">
-        <img src="/images/versus-background.png" className="bg" />
-        <img src="/images/nubes-versus.png" className="clouds" />
-        <img src="/images/clouds-bg-left.png" className="clouds-bg-left" />
-        <img src="/images/clouds-bg-right.png" className="clouds-bg-right" />
+        <img src="/images/versus-background.webp" className="bg" />
+        <img src="/images/nubes-versus.webp" className="clouds" />
+        <img src="/images/clouds-bg-left.webp" className="clouds-bg-left" />
+        <img src="/images/clouds-bg-right.webp" className="clouds-bg-right" />
       </div>
       <div className="vegeta-and-nappa">
         <div className={`nappa ${blink ? "blink": ""}`}/>
@@ -69,7 +69,7 @@ function VersusMenu() {
       <div className="menu">
         <div className="menu-header">
           <img src="/images/versus-title.png" className="versus-title" />
-          <img src="/images/versus-logo.png" className="versus-logo" />
+          <img src="/images/versus-logo.webp" className="versus-logo" />
         </div>
         <div className="menu-options">
           <div className={`option-1 option ${active === 1 ? "selected" : ""}`}>
