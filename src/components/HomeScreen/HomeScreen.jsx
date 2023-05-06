@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 import Clock from "./Clock";
 import Notification from "../Notification/Notification";
-import InfoIcon from "../../assets/images/info-icon.svg";
 
 function HomeScreen() {
   const navigate = useNavigate();
@@ -94,7 +93,6 @@ function HomeScreen() {
         </div>
       </div>
       <Notification>
-        <img className="info-icon" src={InfoIcon} />
         <p>Use full screen for a better experience.</p>
       </Notification>
     </div>

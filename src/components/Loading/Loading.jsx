@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MemoryCard from './MemoryCard';
 import Notification from '../Notification/Notification';
-import InfoIcon from "../../assets/images/info-icon.svg";
 import crossButton from "../../assets/images/cross-button.svg";
 
 function Loading() {
@@ -74,7 +73,6 @@ function Loading() {
             </div>
           </div>
           <Notification>
-            <img className="info-icon" src={InfoIcon} />
             <p>Press <img align="middle" src={crossButton} /> to help Vegeta.</p>
           </Notification>
         </div>

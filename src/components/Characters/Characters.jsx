@@ -3,6 +3,7 @@ import characters, { defaultArray } from '../../data/characters';
 import ArrowUp from "../../assets/images/arrow-up.svg";
 import ArrowDown from "../../assets/images/arrow-down.svg";
 import CharacterSelected from './CharacterSelected';
+import Notification from '../Notification/Notification';
 
 function Characters() {
   const [sectionActive, setSectionActive] = useState(0);
@@ -165,6 +166,9 @@ function Characters() {
         </div>
       </div>
       <div className="hide-characters"/>
+      <Notification>
+        <p>Press "Enter" and "Esc" to enter and exit of transformations.</p>
+      </Notification>
     </div>
   )
 }
